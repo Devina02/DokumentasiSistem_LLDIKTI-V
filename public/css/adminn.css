@@ -1,0 +1,32 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+.sidebar-icon {
+    font-size: 1.5rem; 
+}
+
+.sidebar-text {
+    font-size: 1.2rem; 
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 50; 
+}
+
+/* Styling untuk notifikasi card */
+.notification-card {
+    z-index: 100;
+    background: white
+  
+}
