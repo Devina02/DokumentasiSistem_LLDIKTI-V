@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>{{ $title }}</title>
+    <title>{{ $title ?? 'Default Title' }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
@@ -13,12 +13,14 @@
     <div class="flex h-screen">
         <!-- Sidebar -->
         @include('partials.sidebar')
+        @include('partials.logout')
+
+        <script src="{{ asset('js/logout.js') }}"></script>
 
         <!-- Main Content -->
         <div class="flex-1 p-8 ml-64">
             <div class="flex justify-between items-center mb-8">
                 @include('partials.search') 
-               
             </div>
 
             <!-- Content Container -->

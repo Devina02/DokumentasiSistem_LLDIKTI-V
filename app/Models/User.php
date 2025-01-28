@@ -22,6 +22,7 @@ class User extends Authenticatable
     protected $keyType = 'string'; // UUID sebagai primary key
     public $incrementing = false; // Non-incrementing karena menggunakan UUID
 
+    
     protected $fillable = [
         'id_user',
         'username',
@@ -51,6 +52,8 @@ class User extends Authenticatable
         'last_active' => 'datetime',
         'deleted_at' => 'datetime',
     ];
+
+    public $timestamps = true;
 
     /**
      * Relasi dengan model Tracking

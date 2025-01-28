@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dokumen', function (Blueprint $table) {
-            $table->increments('id_doc');
+        Schema::create('tautan', function (Blueprint $table) {
+            $table->increments('id_link');
             $table->timestamps();
-            $table->unsignedInteger('id_project');
-            $table->string('document', 255);
-       
-
+            $table->unsignedInteger('id_project'); 
+            $table->string('link', 255);
+            $table->string('nama_link', 255);
+            
+            // Menambahkan foreign key
             $table->foreign('id_project')->references('id_project')->on('project')->onDelete('cascade');
-
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dokumen');
+        Schema::dropIfExists('tautan');
     }
 };

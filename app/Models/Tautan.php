@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Link extends Model
+class Tautan extends Model
 {
     use HasFactory;
 
-
+    protected $table = 'tautan';
     protected $primaryKey = 'id_link';
-    protected $fillable = ['project_id', 'link'];
+    protected $fillable = ['nama_link', 'link', 'id_project','id_link'];
 
+    public $timestamps = true;
     // Relasi dengan tabel Project
     public function project()
     {
-        return $this->belongsTo(Project::class, 'project_id', 'id_project');
+        return $this->belongsTo(Project::class, 'id_project', 'id_project');
     }
 
     // Relasi dengan tabel Tracking

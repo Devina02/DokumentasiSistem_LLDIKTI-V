@@ -9,18 +9,20 @@ class Project extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+    protected $table = 'project';
     protected $primaryKey = 'id_project';
-    protected $fillable = ['judul', 'project_type'];
+    protected $fillable = ['judul', 'project_type','create',];
 
     // Relasi dengan tabel Dokumen
-    public function dokumen()
+    public function dokument()
     {
-        return $this->hasMany(Dokumen::class, 'id_project', 'id_project');
+        return $this->hasMany(Dokument::class, 'id_project', 'id_project');
     }
 
     // Relasi dengan tabel Link
-    public function links()
+    public function tautan()
     {
-        return $this->hasMany(Link::class, 'project_id', 'id_project');
+        return $this->hasMany(Tautan::class, 'id_project', 'id_project');
     }
 }

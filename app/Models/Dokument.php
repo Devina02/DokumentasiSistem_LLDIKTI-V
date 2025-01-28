@@ -5,12 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dokumen extends Model
+class Dokument extends Model
 {
     use HasFactory;
 
+    // Nama tabel yang digunakan
+    protected $table = 'dokument';
+
+    // Menetapkan primary key
     protected $primaryKey = 'id_doc';
-    protected $fillable = ['id_project', 'document'];
+
+    // Kolom yang dapat diisi massal
+    protected $fillable = ['id_project', 'nama_dokumen', 'dokumen'];
+
+    public $timestamps = true;
 
     // Relasi dengan tabel Project
     public function project()

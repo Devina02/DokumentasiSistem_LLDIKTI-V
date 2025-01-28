@@ -9,6 +9,15 @@ body {
     font-size: 1.2rem; 
 }
 
+/* CSS untuk sidebar */
+.sidebar a:hover {
+    color: #4299e1; /* Mengubah warna saat hover */
+}
+
+.sidebar-icon:hover {
+    color: #4299e1; /* Mengubah warna ikon saat hover */
+}
+
 
 .overlay {
     position: fixed;
@@ -30,3 +39,4 @@ body {
     background: white
   
 }
+

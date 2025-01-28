@@ -15,53 +15,17 @@ use App\Models\post;
 |
 */
 
+
+
 Route::get('/', function () {
-    return view('home');
-});
+    return view('landingpage');
+})->name('landingpage');
 
-Route::get('/admin/dashboardadmin', action: function () {
-    $tracking = [
-        [
-            "no" => "1",
-            "akun" => "Karina",
-            "aksi" => "Lihat",
-            "dokumen" => "Handbook Evira",
-            "waktu" => "17 Januari 2025",
-        ],
-        [
-            "no" => "2",
-            "akun" => "NingNing",
-            "aksi" => "Unduh",
-            "dokumen" => " Analisis sistem sengkuni",
-            "waktu" => "10 Januari 2025",
-        ],
-        [
-            "no" => "4",
-            "akun" => "Gisele",
-            "aksi" => "Unduh",
-            "dokumen" => "Data analysis sadewa",
-            "waktu" => "1 Januari 2025",
-        ],
-
-    ];
-    return view('admin.dashboardadmin', [
-        "title" => "dashboardadmin",
-        "tracking" => $tracking
-    ]);
-});
-
-Route::get('/admin/dokumen', function () {
-    $dokumen = Post::all(); 
-    return view('admin.dokumen', [ 
-        "title" => "Dokumen Admin", 
-        "dokumen" => $dokumen
-    ]);
-});
 
 Route::get('/user/dokumenuser', function () {
-    $dokumen = Post::all(); 
-    return view('user.dokumenuser', [ 
-        "title" => "Dokumen Admin", 
+    $dokumen = Post::all();
+    return view('user.dokumenuser', [
+        "title" => "Dokumen Admin",
         "dokumen" => $dokumen
     ]);
 });
@@ -69,9 +33,10 @@ Route::get('/user/dokumenuser', function () {
 Route::get('/dokumen/{slug}', function ($slug) {
     return view('detailproject', [
         "title" => "post::find($slug)",
-        
+
     ]);
 });
+
 
 
 Route::get('/user/dashboarduser', action: function () {
@@ -80,64 +45,81 @@ Route::get('/user/dashboarduser', action: function () {
     ]);
 });
 
-Route::get('/admin/kelolaakun', action: function () {
-    return view('admin.kelolaakun', [
+Route::get('/superadmin/kelolaakun', action: function () {
+    return view('superadmin.kelolaakun', [
         "title" => "kelolaakun"
     ]);
 });
 
-Route::get('/admin/uploaddoc', action: function () {
-    return view('admin.uploaddoc', [
+Route::get('/superadmin/uploaddoc', action: function () {
+    return view('superadmin.uploaddoc', [
         "title" => "uploaddoc"
     ]);
 });
-
-Route::get('/alert/alerthapusproject', action: function () {
-    return view('alert.alerthapusproject', [
-        "title" => "alerthapusproject"
-    ]);
-});
-
-Route::get('/alert/alerthapusakunuser', action: function () {
-    return view('alert.alerthapusakunuser', [
-        "title" => "alerthapusakunuser"
-    ]);
-});
-
-Route::get('/alert/alerttambahakun', action: function () {
-    return view('alert.alerttambahakun', [
-        "title" => "alerttambahakun"
-    ]);
-});
-
-
-Route::get('/alert/fileuploadcard', action: function () {
-    return view('alert.fileuploadcard', [
-        "title" => "fileuploadcard"
-    ]);
-});
-
 Route::get('/alert/linkuploadcard', action: function () {
     return view('alert.linkuploadcard', [
         "title" => "linkuploadcard"
     ]);
 });
 
-Route::get('/alert/alerthapusdoc', action: function () {
-    return view('alert.alerthapusdoc', [
-        "title" => "alerthapusdoc"
-    ]);
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProjectController;
+
+
+// Superadmin routes
+Route::get('/superadmin/dashboardsuperadmin', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
+Route::get('/superadmin/dokumensuperadmin', [SuperAdminController::class, 'documents'])->name('superadmin.dokumen');
+
+
+// Route for editing accounts
+Route::get('/superadmin/kelolaakun/{id_user}/edit', [SuperAdminController::class, 'edit'])->name('superadmin.kelolaakun.edit');
+
+// Route for updating account data
+Route::put('/superadmin/kelolaakun/{id_user}', [SuperAdminController::class, 'update'])->name('superadmin.kelolaakun.update');
+
+// Admin routes
+Route::get('/admin/dashboardadmin', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/dokumenadmin', [AdminController::class, 'documents'])->name('admin.dokumen');
+
+// Authentication routes
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+// Middleware routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
+    Route::get('/superadmin/dokumensuperadmin', [SuperAdminController::class, 'documents'])->name('superadmin.dokumen');
+    Route::get('/admin/dashboardadmin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dokumenadmin', [AdminController::class, 'documents'])->name('admin.dokumen');
 });
 
-Route::get('/alert/alerthapuslink', action: function () {
-    return view('alert.alerthapuslink', [
-        "title" => "alerthapuslink"
-    ]);
+// Superadmin role middleware
+Route::middleware(['auth', 'role:superadmin'])->prefix('superadmin')->group(function () {
+    // Route for managing accounts
+    Route::get('/kelolaakun', [SuperAdminController::class, 'kelolaakun'])->name('superadmin.kelolaakun.index');
+    Route::post('/kelolaakun', [SuperAdminController::class, 'store'])->name('superadmin.kelolaakun.store');
+    Route::delete('/kelolaakun/{id_user}', [SuperAdminController::class, 'destroy'])->name('superadmin.kelolaakun.destroy');
+    
+    // Route for editing accounts
+    Route::get('/kelolaakun/{id_user}/edit', [SuperAdminController::class, 'edit'])->name('superadmin.kelolaakun.edit');
+    
+    // Route for updating account data
+    Route::put('/kelolaakun/{id_user}', [SuperAdminController::class, 'update'])->name('superadmin.kelolaakun.update');
 });
+Route::get('/superadmin/kelolaakun/search', [SuperAdminController::class, 'search'])->name('superadmin.kelolaakun.search');
 
-Route::get('/alert/alertsuksesupload', action: function () {
-    return view('alert.alertsuksesupload', [
-        "title" => "alertsuksesupload"
-    ]);
-});
+// Logout route
+Route::post('/logout', [SuperAdminController::class, 'logout'])->name('logout');
+
+// Upload project 
+Route::get('/upload-doc', [ProjectController::class, 'create'])->name('uploaddoc');
+Route::post('/upload-doc', [ProjectController::class, 'store']);
 

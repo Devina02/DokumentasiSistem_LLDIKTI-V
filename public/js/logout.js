@@ -1,21 +1,15 @@
-  // Ambil elemen
-  const logoutBtn = document.getElementById('logout-btn');
-  const overlay = document.getElementById('overlay');
-  const confirmLogout = document.getElementById('confirm-logout');
-  const cancelLogout = document.getElementById('cancel-logout');
+document.addEventListener('DOMContentLoaded', function () {
+    const logoutButton = document.getElementById('logoutButton'); // Tombol logout di sidebar
+    const logoutModal = document.getElementById('logoutModal'); // Modal logout
+    const cancelLogout = document.getElementById('cancel-logout'); // Tombol batal di modal
 
-  // untuk tombol logout
-  logoutBtn.addEventListener('click', function() {
-      overlay.style.display = 'flex'; // Tampilkan overlay
-  });
+    // Ketika tombol logout di sidebar diklik, tampilkan modal
+    logoutButton.addEventListener('click', function () {
+        logoutModal.classList.remove('hidden'); // Tampilkan modal
+    });
 
-  // untuk konfirmasi logout
-  confirmLogout.addEventListener('click', function() {
-      // Di sini, arahkan ke halaman home setelah logout
-      window.location.href = 'home.blade.php'; //
-  });
-
-  // Event listener untuk membatalkan logout
-  cancelLogout.addEventListener('click', function() {
-      overlay.style.display = 'none'; // Sembunyikan overlay
-  });
+    // Ketika tombol batal logout diklik, sembunyikan modal
+    cancelLogout.addEventListener('click', function () {
+        logoutModal.classList.add('hidden'); // Sembunyikan modal
+    });
+});

@@ -14,7 +14,7 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <p class="text-gray-600 mb-6 text-center">Apakah anda yakin ingin <span class="font-semibold text-black">menghapus dokumen </span> yang anda pilih?</p>
+        <p class="text-gray-600 mb-6 text-center">Apakah anda yakin ingin <span class="font-semibold text-black">menghapus item </span> yang anda pilih?</p>
         <div class="flex justify-center space-x-6">
             <button class="text-gray-600 font-semibold hover:text-gray-800">Tidak</button>
             <button class="bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500 text-white font-semibold py-2 px-8 rounded-full shadow-lg hover:from-blue-400 hover:via-blue-500 hover:to-blue-600">Hapus</button>

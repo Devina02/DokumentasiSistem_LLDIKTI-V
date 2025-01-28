@@ -12,6 +12,8 @@ class Tracking extends Model
     protected $primaryKey = 'id_aktivitas';
     protected $fillable = ['id_user', 'id_doc', 'id_link', 'aksi', 'timestamp'];
 
+    public $timestamps = true;
+
     // Relasi dengan tabel User
     public function user()
     {
@@ -19,14 +21,14 @@ class Tracking extends Model
     }
 
     // Relasi dengan tabel Dokumen
-    public function dokumen()
+    public function dokument()
     {
-        return $this->belongsTo(Dokumen::class, 'id_doc', 'id_doc');
+        return $this->belongsTo(Dokument::class, 'id_doc', 'id_doc');
     }
 
     // Relasi dengan tabel Link
-    public function link()
+    public function tautan()
     {
-        return $this->belongsTo(Link::class, 'id_link', 'id_link');
+        return $this->belongsTo(Tautan::class, 'id_link', 'id_link');
     }
 }

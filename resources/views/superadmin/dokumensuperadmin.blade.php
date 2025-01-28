@@ -6,7 +6,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Project Card -->
             @foreach ($dokumen as $item)
-                <div class="bg-white p-6 rounded-3xl shadow-md transform transition-transform duration-300 hover:scale-105" style="background-color: {{ $item['color'] }};">
+            <div class="bg-white p-6 rounded-3xl shadow-md transform transition-transform duration-300 hover:scale-105"
+                 style="background-color: {{ $item['color'] }};">
                     <!-- tanggal input-->
                     <div class="flex justify-between items-center mb-4">
                         <span class="text-gray-600">

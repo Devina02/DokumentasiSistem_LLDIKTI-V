@@ -1,91 +1,68 @@
-@extends('layouts.main')
-
+@extends('layouts.mainuser')
 
 @section('container')
-
-    <div class="bg-white p-6 rounded-lg mb-6">
-        <div class="flex justify-between items-center">
+    <!-- Main Content -->
+    <div class="bg-white p-10 rounded-lg shadow-md flex items-center justify-between mb-12 mx-auto"
+        style="max-width: calc(100% - 4rem);">
+        <div class="flex items-center space-x-8">
+            <img alt="Illustration" class="w-auto h-auto max-w-full max-h-64" src="{{ asset('image/dashadm.png') }}" />
             <div>
-                <h2 class="text-xl font-bold mb-2">
-                    Manajemen Dokumentasi Sistem LLDIKTI Wilayah V
-                </h2>
-                <p class="text-gray-500">
-                    Jumlah akun yang memiliki akses :
-                    <a class="text-blue-500" href="/admin/kelolaakun">
-                        5
-                    </a>
+                <h1 class="text-4xl font-semibold">
+                    Halo,
+                    <span class="text-blue-500">
+                        Admin!
+                    </span>
+                </h1>
+                <p class="text-gray-500 mt-5">
+                    Welcome back! Semua informasi proyek, dokumen, dan link tersedia di sini.
                 </p>
             </div>
-            <button
-            class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-2 px-4 rounded-full ml-4 shadow-lg flex items-center hover:from-blue-600 hover:to-blue-800 hover:shadow-xl"
-            onclick="window.location.href='/admin/kelolaakun'">
-            <i class="fas fa-cog mr-2"></i> Kelola akun
-        </button>
-        
+        </div>
+    </div>
 
-        </div>
-    </div>
-    <div class="mb-6">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-bold">
-                Dokumentasi
-            </h3>
-        </div>
-        <div class="grid grid-cols-3 gap-8">
-            <div class="bg-gradient-to-r from-blue-400 to-blue-600 text-white p-8 rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                <p class="font-bold">
-                    Total Project
-                </p>
-                <p class="text-sm">
-                    10 Project
-                </p>
+    <div class="mb-6 mx-auto" style="max-width: calc(100% - 4rem);">
+        <h2 class="text-xl font-semibold mb-6">
+            Dashboard Admin
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6 mx-auto" style="max-width: calc(100% - 4rem);">
+            <!-- Project Card -->
+            <div class="bg-gradient-to-r from-blue-400 to-blue-600 p-4 rounded-lg flex flex-col transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <div class="flex flex-col items-start mb-4">
+                    <i class="fas fa-folder text-blue-100 text-2xl mb-2"></i>
+                    <p class="text-blue-100">Project</p>
+                    <p class="text-xl font-bold text-white">{{ $totalProjects }} Project</p>
+                </div>
+                <div class="bg-gray-200 h-2 rounded-full mb-4 mt-4">
+                    <div class="bg-blue-500 h-2 rounded-full" style="width: {{ ($totalProjects / 1000) * 100 }}%;"></div>
+                </div>
+                <p class="text-blue-100 text-sm mt-4">Total Project: {{ $totalProjects }}</p>
             </div>
-            <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-8 rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                <p class="font-bold">
-                    Total Dokumentasi
-                </p>
-                <p class="text-sm">
-                    30 Dokumentasi
-                </p>
+
+            <!-- Dokumen Card -->
+            <div class="bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-lg flex flex-col transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <div class="flex flex-col items-start mb-4">
+                    <i class="fas fa-folder text-pink-100 text-2xl mb-2"></i>
+                    <p class="text-pink-100">Dokumen</p>
+                    <p class="text-xl font-bold text-white">{{ $totalDocuments }} Dokumen</p>
+                </div>
+                <div class="bg-gray-200 h-2 rounded-full mb-4 mt-4">
+                    <div class="bg-pink-500 h-2 rounded-full" style="width: {{ ($totalDocuments / 1000) * 100 }}%;"></div>
+                </div>
+                <p class="text-pink-100 text-sm mt-4">Total Dokumen: {{ $totalDocuments }}</p>
             </div>
-            <div class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white p-8 rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                <p class="font-bold">
-                    Total Link
-                </p>
-                <p class="text-sm">
-                    15 Link
-                </p>
+
+            <!-- Link Card -->
+            <div class="bg-gradient-to-r from-purple-500 to-indigo-600 p-4 rounded-lg flex flex-col transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <div class="flex flex-col items-start mb-4">
+                    <i class="fas fa-folder text-indigo-100 text-2xl mb-2"></i>
+                    <p class="text-indigo-100">Link</p>
+                    <p class="text-xl font-bold text-white">{{ $totalLinks }} Link</p>
+                </div>
+                <div class="bg-gray-200 h-2 rounded-full mb-4 mt-4">
+                    <div class="bg-indigo-500 h-2 rounded-full" style="width: {{ ($totalLinks / 1000) * 100 }}%;"></div>
+                </div>
+                <p class="text-indigo-100 text-sm mt-4">Total Link: {{ $totalLinks }}</p>
             </div>
         </div>
-        
-    </div>
-    <div>
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-bold">
-                Aktivitas
-            </h3>
-        </div>
-        <table class="w-full bg-white rounded-lg">
-            <thead>
-                <tr class="text-left text-gray-500">
-                    <th class="p-4">No.</th>
-                    <th class="p-4">Akun</th>
-                    <th class="p-4">Aksi</th>
-                    <th class="p-4">Doc</th>
-                    <th class="p-4">Waktu</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($tracking as $item)
-                    <tr class="border-t">
-                        <td class="p-4">{{ $item['no'] }}</td>
-                        <td class="p-4">{{ $item['akun'] }}</td>
-                        <td class="p-4">{{ $item['aksi'] }}</td>
-                        <td class="p-4 text-blue-500">{{ $item['dokumen'] }}</td>
-                        <td class="p-4">{{ $item['waktu'] }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
     </div>
 @endsection
