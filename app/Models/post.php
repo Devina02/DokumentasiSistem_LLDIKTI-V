@@ -8,7 +8,7 @@ class post
         [
             "input" => "Juli 2, 2020",
             "slug" => "sengkuni",
-            "judul" => "Sengkuni",
+            "judul" => "porject1",
             "type" => "website",
             "updated" => "jan, 2025",
             "color" => "#e0f7fa",
@@ -20,7 +20,7 @@ class post
         [
             "input" => "Maret 2, 2020",
             "slug" => "evira",
-            "judul" => "Evira",
+            "judul" => "porject2",
             "type" => "Mobile",
             "updated" => "Des, 2025",
             "color" => "#fef3c7",
@@ -32,7 +32,7 @@ class post
         [
             "input" => "Maret 2, 2020",
             "slug" => "evira",
-            "judul" => "Evira",
+            "judul" => "porject3",
             "type" => "Website",
             "updated" => "Des, 2025",
             "color" => "#d1fae5",
@@ -45,7 +45,7 @@ class post
         [
             "input" => "Maret 2, 2020",
             "slug" => "nakula",
-            "judul" => "Nakula",
+            "judul" => "porject4",
             "type" => "Website",
             "updated" => "Des, 2025",
             "color" => "#fde2e2",
@@ -58,7 +58,7 @@ class post
         [
             "input" => "Maret 2, 2020",
             "slug" => "sadewa",
-            "judul" => "Sadewa",
+            "judul" => "porject5",
             "type" => "Website",
             "updated" => "Des, 2025",
             "color" => "#e9d5ff",
@@ -71,7 +71,7 @@ class post
         [
             "input" => "Maret 2, 2020",
             "slug" => "janaka",
-            "judul" => "Janaka",
+            "judul" => "porject6",
             "type" => "Website",
             "updated" => "Des, 2025",
             "color" => "#d1d5db",

@@ -1,6 +1,7 @@
 @extends('layouts.empty')
 
 @section('container')
+
 <div class="flex-1 p-6 bg-white rounded-xl">
     <div class="w-full max-w-4xl">
         <div class="flex justify-between items-center mb-20">
@@ -12,7 +13,6 @@
 
         @include('alert.flashhmessage')
     
-
         <form action="{{ url('/upload-doc') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
@@ -33,7 +33,6 @@
             </div>
 
             <div id="link-section" class="grid grid-cols-1 gap-8 mb-8">
-                <!-- Template untuk link -->
                 <div class="hidden link-template grid grid-cols-2 gap-8 mb-8">
                     <div>
                         <label class="block text-gray-700">Nama Link</label><input class="w-full border-b border-gray-300 focus:outline-none focus:border-purple-500 rounded-xl" type="text" name="links[][nama_link]" />
@@ -85,57 +84,10 @@
 <!-- Modal -->
 @include('alert.modalhapusitem')
 
+<script src="{{ asset("js/adddoc.js") }}"></script>
+<script src="{{ asset("js/addlink.js") }}"></script>
+<script src="{{ asset("js/modalkonfirm.js") }}"></script>
 <script src="{{ asset("js/timeoutflash.js") }}"></script>
-<script>
-    let itemToDelete = null;
-
-    // Tambahkan link baru
-    document.getElementById('add-link-btn').addEventListener('click', function() {
-    const template = document.querySelector('.link-template');
-    const clone = template.cloneNode(true);
-    clone.classList.remove('hidden', 'link-template');
-    // Tambahkan index agar input tetap berpasangan
-    const index = document.querySelectorAll('#link-section .grid').length;
-    clone.querySelectorAll('input').forEach(input => {
-        input.name = input.name.replace(/\[\]/, `[${index}]`);
-    });
-    document.getElementById('link-section').appendChild(clone);
-});
-;
-
-    // Tambahkan dokumen baru
-    document.getElementById('add-docs-btn').addEventListener('click', function() {
-        const template = document.querySelector('.docs-template');
-        const clone = template.cloneNode(true);
-        clone.classList.remove('hidden', 'docs-template');
-        document.getElementById('docs-section').appendChild(clone);
-    });
-
-    // Delegasi event untuk tombol hapus (link dan dokumen)
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.delete-btn')) {
-            itemToDelete = e.target.closest('.grid');
-            document.getElementById('modal').classList.remove('hidden');
-        }
-    });
-
-    // Event untuk tombol close modal
-    document.getElementById('close-modal').addEventListener('click', function() {
-        document.getElementById('modal').classList.add('hidden');
-    });
-
-    // Event untuk tombol cancel
-    document.getElementById('cancel-btn').addEventListener('click', function() {
-        document.getElementById('modal').classList.add('hidden');
-    });
-
-    // Event untuk tombol konfirmasi hapus
-    document.getElementById('confirm-delete').addEventListener('click', function() {
-        if (itemToDelete) {
-            itemToDelete.remove();
-            itemToDelete = null;
-            document.getElementById('modal').classList.add('hidden');
-        }
-    });
-    </script>
+<script src="{{ asset("js/deletelabel.js") }}"></script>
+<script>let itemToDelete = null;</script>
 @endsection

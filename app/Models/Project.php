@@ -12,7 +12,7 @@ class Project extends Model
     public $timestamps = true;
     protected $table = 'project';
     protected $primaryKey = 'id_project';
-    protected $fillable = ['judul', 'project_type','create',];
+    protected $fillable = ['judul', 'project_type'];
 
     // Relasi dengan tabel Dokumen
     public function dokument()

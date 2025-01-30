@@ -24,10 +24,9 @@ class SuperAdminController extends Controller
             ->count();
 
         // Hitung jumlah project, dokumen, dan link
-        $totalProjects = Project::count(); // Menghitung jumlah project
-        $totalDocuments = Dokument::count(); // Menghitung jumlah dokumen
-        $totalLinks = tautan::count(); // Ganti dengan logika yang sesuai jika ada data terkait links
-
+        $totalProjects = Project::count(); 
+        $totalDocuments = Dokument::count();
+        $totalLinks = tautan::count(); 
         // Kirim data ke view
         return view('superadmin.dashboardsuperadmin', compact('title', 'activeAdmins', 'totalProjects', 'totalDocuments', 'totalLinks'));
     }
@@ -43,20 +42,19 @@ class SuperAdminController extends Controller
     }
 
     // Menampilkan daftar akun yang bisa dikelola
-    // Menampilkan daftar akun yang bisa dikelola
     public function kelolaakun(Request $request)
     {
         $title = 'Kelola Akun Super Admin';
 
-        // Get the search term from the request
+        
         $search = $request->input('search');
 
-        // If search term exists, filter users by username, otherwise, get all admins
         $users = User::where('role', 'admin')
             ->when($search, function ($query) use ($search) {
                 return $query->where('username', 'like', '%' . $search . '%');
             })
             ->paginate(4);
+            
 
         return view('superadmin.kelolaakun', compact('title', 'users'));
     }
@@ -109,7 +107,7 @@ class SuperAdminController extends Controller
         // Validasi jika ada perubahan pada username dan password
         $validated = $request->validate([
             'username' => 'required|string|max:255',
-            'password' => 'nullable|string|min:8', // Password hanya wajib jika diubah
+            'password' => 'nullable|string|min:2',
         ]);
 
         $isChanged = false;
@@ -132,13 +130,9 @@ class SuperAdminController extends Controller
             return redirect()->route('superadmin.kelolaakun.index')->with('success', 'Akun berhasil diperbarui!');
         }
 
-
         // Jika tidak ada perubahan
         return redirect()->route('superadmin.kelolaakun.index')->with('warning', 'Tidak ada perubahan yang dilakukan.');
     }
-
-
-
 
     // Login - Menambahkan pembaruan last_active saat login
     public function login(Request $request)
@@ -160,7 +154,6 @@ class SuperAdminController extends Controller
     public function logout(Request $request)
     {
         $user = Auth::user();
-
 
         Auth::logout();
         $request->session()->invalidate();

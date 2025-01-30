@@ -21,8 +21,8 @@ class Tautan extends Model
     }
 
     // Relasi dengan tabel Tracking
-    public function trackings()
+    public function aktivitas()
     {
-        return $this->hasMany(Tracking::class, 'id_link', 'id_link');
+        return $this->hasMany(aktivitas::class, 'id_link', 'id_link');
     }
 }

@@ -1,6 +1,6 @@
 <div class="w-64 bg-white p-10 rounded-r-3xl shadow-lg fixed h-full overflow-y-auto">
     <!-- Header Sidebar -->
-    <div class="flex items-center mb-20">
+    <div class="flex items-center mb-20 mt-10">
         <div class="bg-blue-500 p-4 rounded-full">
             <i class="fas fa-cloud text-white"></i>
         </div>
@@ -10,38 +10,20 @@
     <!-- Navigation Menu -->
     <ul class="space-y-10">
         <!-- Dashboard Link -->
-        @if(Auth::user()->role == 'superadmin')
         <li>
-            <a class="flex items-center {{ request()->is('superadmin/dashboardsuperadmin') ? 'font-bold text-blue-500' : 'text-gray-600 hover:text-blue-500' }}" href="{{ route('superadmin.dashboard') }}">
-                <i class="fas fa-tachometer-alt sidebar-icon mr-3 {{ request()->is('superadmin/dashboardsuperadmin') ? 'text-blue-500' : '' }}"></i>
+            <a class="flex items-center {{ request()->is('superadmin/dashboardsuperadmin') || request()->is('admin/dashboardadmin') ? 'font-bold text-blue-500' : 'text-gray-600 hover:text-blue-500' }}" href="{{ route(Auth::user()->role . '.dashboard') }}">
+                <i class="fas fa-tachometer-alt sidebar-icon mr-3 {{ request()->is('superadmin/dashboardsuperadmin') || request()->is('admin/dashboardadmin') ? 'text-blue-500' : '' }}"></i>
                 <span class="sidebar-text">Dashboard</span>
             </a>
         </li>
-        @elseif(Auth::user()->role == 'admin')
-        <li>
-            <a class="flex items-center {{ request()->is('admin/dashboardadmin') ? 'font-bold text-blue-500' : 'text-gray-600 hover:text-blue-500' }}" href="{{ route('admin.dashboard') }}">
-                <i class="fas fa-tachometer-alt sidebar-icon mr-3 {{ request()->is('admin/dashboardadmin') ? 'text-blue-500' : '' }}"></i>
-                <span class="sidebar-text">Dashboard</span>
-            </a>
-        </li>
-        @endif
         
         <!-- Documents Link -->
-        @if(Auth::user()->role == 'superadmin')
         <li>
-            <a class="flex items-center {{ request()->is('superadmin/dokumensuperadmin') ? 'font-bold text-blue-500' : 'text-gray-600 hover:text-blue-500' }}" href="{{ route('superadmin.dokumen') }}">
-                <i class="fas fa-file-alt sidebar-icon mr-3 {{ request()->is('superadmin/dokumensuperadmin') ? 'text-blue-500' : '' }}"></i>
+            <a class="flex items-center {{ request()->is('superadmin/dokumensuperadmin') || request()->is('admin/dokumenadmin') ? 'font-bold text-blue-500' : 'text-gray-600 hover:text-blue-500' }}" href="{{ route(Auth::user()->role . '.dokumen') }}">
+                <i class="fas fa-file-alt sidebar-icon mr-3 {{ request()->is('superadmin/dokumensuperadmin') || request()->is('admin/dokumenadmin') ? 'text-blue-500' : '' }}"></i>
                 <span class="sidebar-text">Documents</span>
             </a>
         </li>
-        @elseif(Auth::user()->role == 'admin')
-        <li>
-            <a class="flex items-center {{ request()->is('admin/dokumenadmin') ? 'font-bold text-blue-500' : 'text-gray-600 hover:text-blue-500' }}" href="{{ route('admin.dokumen') }}">
-                <i class="fas fa-file-alt sidebar-icon mr-3 {{ request()->is('admin/dokumenadmin') ? 'text-blue-500' : '' }}"></i>
-                <span class="sidebar-text">Documents</span>
-            </a>
-        </li>
-        @endif
 
         <!-- Logout Link -->
         <li>

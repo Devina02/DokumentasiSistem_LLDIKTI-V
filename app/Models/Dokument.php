@@ -16,10 +16,12 @@ class Dokument extends Model
     protected $primaryKey = 'id_doc';
 
     // Kolom yang dapat diisi massal
-    protected $fillable = ['id_project', 'nama_dokumen', 'dokumen'];
+    protected $fillable = ['id_project', 'nama_dokumen', 'dokumen','id_doc'];
 
     public $timestamps = true;
 
+
+    
     // Relasi dengan tabel Project
     public function project()
     {
@@ -27,8 +29,8 @@ class Dokument extends Model
     }
 
     // Relasi dengan tabel Tracking
-    public function trackings()
+    public function aktivitas()
     {
-        return $this->hasMany(Tracking::class, 'id_doc', 'id_doc');
+        return $this->hasMany(aktivitas::class, 'id_doc', 'id_doc');
     }
 }

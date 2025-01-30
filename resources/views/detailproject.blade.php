@@ -1,121 +1,141 @@
 @extends('layouts.empty')
 
-
 @section('container')
+
+<div class="flex justify-center p-8 bg-white rounded-xl">
     <!-- Main Content -->
-    <div class="flex-1 p-10 ml-30">
-        <div class="text-center">
-            <h1 class="text-6xl font-bold">SENGKUNI</h1>
-            <p class="text-gray-600">website</p>
+    <div class="w-full max-w-8xl">
+        
+       
+        @include('button.previous')
+
+        <div class="text-center mb-6 mt-6">
+            <h1 class="text-5xl font-bold text-black-500 mb-4">
+                {{ $project->judul }}
+            </h1>
+            <p class="text-lg text-gray-600">
+                Project Type: {{ $project->project_type }}
+            </p>
         </div>
 
-        <!-- First Table -->
-        <div class="mt-8 bg-white shadow-md rounded-lg overflow-hidden mb-8">
-            <table class="min-w-full bg-white">
-                <thead>
-                    <tr>
-                        <th class="py-3 px-4 border-b text-left">NO</th>
-                        <th class="py-3 px-4 border-b text-left">LINK</th>
-                        <th class="py-3 px-4 border-b text-left">UPDATE</th>
-                        <th class="py-3 px-4 border-b text-left">AKSI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-3 px-4 border-b">1</td>
-                        <td class="py-3 px-4 border-b">Link github</td>
-                        <td class="py-3 px-4 border-b">3 November 2024</td>
-                        <td class="py-3 px-4 border-b">
-                            <div class="flex space-x-2">
-                                <a href="#"
-                                    class="bg-pink-700 hover:bg-pink-800 text-white font-bold py-1 px-2 rounded-full flex items-center">
-                                    <i class="fas fa-link mr-1"></i> Link
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-3 px-4 border-b">2</td>
-                        <td class="py-3 px-4 border-b">Link github</td>
-                        <td class="py-3 px-4 border-b">1 November 2024</td>
-                        <td class="py-3 px-4 border-b">
-                            <div class="flex space-x-2">
-                                <a href="#"
-                                    class="bg-pink-700 hover:bg-pink-800 text-white font-bold py-1 px-2 rounded-full flex items-center">
-                                    <i class="fas fa-link mr-1"></i> Link
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="rounded-md p-4">
+                <div class="relative rounded-md bg-gradient-to-r from-blue-300 to-pink-200 p-[2px]">
+                    <div class="bg-white p-4 rounded-md">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <i class="fas fa-calendar-alt bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700"></i>
+                            <h2 class="text-xl font-bold text-gray-700">
+                                Tanggal Dibuat
+                            </h2>
+                        </div>
+                        <div class="text-base text-gray-600">
+                            <p>
+                                <span class="font-bold">Tanggal project:</span>
+                            </p>
+                            <p>
+                                <span class="font-medium">{{ \Carbon\Carbon::parse($project->created_at)->format('d M, Y') }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tanggal Diperbarui -->
+            <div class="rounded-md p-4">
+                <div class="relative rounded-md bg-gradient-to-r from-blue-300 to-pink-200 p-[2px]">
+                    <div class="bg-white p-4 rounded-md">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-sync-alt bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700"></i>
+                        <h2 class="text-lg font-bold text-gray-700">
+                            Tanggal Diperbarui
+                        </h2>
+                    </div>
+                    <div class="text-base text-gray-600">
+                        <p>
+                            <span class="font-bold">Tanggal Link:</span>
+                            <span class="font-medium">
+                                {{ optional($tautans->sortByDesc('updated_at')->first())->updated_at ? \Carbon\Carbon::parse($tautans->sortByDesc('updated_at')->first()->updated_at)->format('d M, Y') : '-' }}
+                            </span>
+                        </p>
+                        <p>
+                            <span class="font-bold">Tanggal Dokumen:</span>
+                            <span class="font-medium">
+                                {{ optional($dokuments->sortByDesc('updated_at')->first())->updated_at ? \Carbon\Carbon::parse($dokuments->sortByDesc('updated_at')->first()->updated_at)->format('d M, Y') : '-' }}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Second Table -->
-        <div class="mt-8 bg-white shadow-md rounded-lg overflow-hidden">
-            <table class="min-w-full bg-white">
-                <thead>
-                    <tr>
-                        <th class="py-3 px-4 border-b text-left">NO</th>
-                        <th class="py-3 px-4 border-b text-left">DOKUMEN</th>
-                        <th class="py-3 px-4 border-b text-left">UPDATE</th>
-                        <th class="py-3 px-4 border-b text-left">AKSI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-3 px-4 border-b">1</td>
-                        <td class="py-3 px-4 border-b">Data analysys</td>
-                        <td class="py-3 px-4 border-b">15 Desember 2024</td>
-                        <td class="py-3 px-4 border-b">
-                            <div class="flex space-x-2">
-                                <button
-                                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded-full flex items-center">
-                                    <i class="fas fa-eye mr-1"></i> Lihat
-                                </button>
-                                <button
-                                    class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-1 px-2 rounded-full flex items-center">
-                                    <i class="fas fa-download mr-1"></i> Unduh
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-3 px-4 border-b">2</td>
-                        <td class="py-3 px-4 border-b">Handbook User</td>
-                        <td class="py-3 px-4 border-b">15 Desember 2024</td>
-                        <td class="py-3 px-4 border-b">
-                            <div class="flex space-x-2">
-                                <button
-                                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded-full flex items-center">
-                                    <i class="fas fa-eye mr-1"></i> Lihat
-                                </button>
-                                <button
-                                    class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-1 px-2 rounded-full flex items-center">
-                                    <i class="fas fa-download mr-1"></i> Unduh
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-gray-100">
-                        <td class="py-3 px-4 border-b">3</td>
-                        <td class="py-3 px-4 border-b">Handbook Super Admin</td>
-                        <td class="py-3 px-4 border-b">15 Desember 2024</td>
-                        <td class="py-3 px-4 border-b">
-                            <div class="flex space-x-2">
-                                <button
-                                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded-full flex items-center">
-                                    <i class="fas fa-eye mr-1"></i> Lihat
-                                </button>
-                                <button
-                                    class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-1 px-2 rounded-full flex items-center">
-                                    <i class="fas fa-download mr-1"></i> Unduh
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- Tautan Section -->
+        <div class="rounded-md p-4 mb-6">
+            <div class="relative rounded-md bg-gradient-to-r from-blue-300 to-pink-200 p-[2px]">
+                <!-- Konten di dalam -->
+                <div class="bg-white p-4 rounded-md">
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+                    <div>
+                        <h3 class="text-lg font-bold text-black-700 mb-4">Link</h3>
+                        @foreach($project->tautan as $loopIndex => $tautan)
+                        <div class="text-base text-gray-600 flex space-x-2 mb-4">
+                            <p class="w-1/6">
+                                <span class="font-bold">No:</span>
+                                <span class="font-medium">{{ $loopIndex + 1 }}</span>
+                            </p>
+
+                            <p class="w-1/3">
+                                <span class="font-bold">Nama Link:</span>
+                                <span class="font-medium">{{ $tautan->nama_link }}</span>
+                            </p>
+                            <p class="w-1/3">
+                                <span class="font-bold">Link:</span>
+                                <span class="font-medium">
+                                    <a href="{{ $tautan->link }}" class="text-blue-500" target="_blank">Lihat Link</a>
+                                </span>
+                            </p>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
+
+        <!-- Dokumen Section -->
+        <div class="rounded-md p-4 mb-6">
+            <div class="relative rounded-md bg-gradient-to-r from-blue-300 to-pink-200 p-[2px]">
+                <!-- Konten di dalam -->
+                <div class="bg-white p-4 rounded-md">
+                <h3 class="text-lg font-bold text-black-700 mb-4">Dokumen</h3>
+                @foreach($project->dokument as $loopIndex => $dokument)
+                <div class="text-base text-gray-600 flex space-x-2 mb-4">
+                    <p class="w-1/6">
+                        <span class="font-bold">No:</span>
+                        <span class="font-medium">{{ $loopIndex + 1 }}</span>
+                    </p>
+                    <p class="w-1/3">
+                        <span class="font-bold">Nama Dokumen:</span>
+                        <span class="font-medium">{{ $dokument->nama_dokumen }}</span>
+                    </p>
+                    <p class="w-1/6">
+                        <span class="font-bold">Dokumen:</span>
+                        <span class="font-medium">
+                            <a href="{{ asset('storage/' . $dokument->dokumen) }}" class="text-blue-500" target="_blank">Lihat Dokumen</a>
+                        </span>
+                    </p>
+                    <div class="w-2/8 flex items-center">
+                        <a href="{{ asset('storage/' . $dokument->dokumen) }}" 
+                           class="text-lg" 
+                           download="{{ $dokument->nama_dokumen }}.pdf">
+                            <i class="fas fa-download bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700"></i>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+
     </div>
+</div>
+
 @endsection

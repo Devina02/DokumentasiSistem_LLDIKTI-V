@@ -2,7 +2,7 @@
 
 @section('container')
     <!-- Main Content -->
-    <div class="bg-white p-10 rounded-lg shadow-md flex items-center justify-between mb-12 mx-auto"
+    <div class="bg-white p-10 rounded-lg shadow-md flex items-center justify-between mb-10 mx-auto"
         style="max-width: calc(100% - 4rem);">
         <div class="flex items-center space-x-8">
             <img alt="Illustration" class="w-auto h-auto max-w-full max-h-64" src="{{ asset('image/dashadm.png') }}" />

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Dokument;
 use App\Models\post;
 use App\Models\Project;
 use App\Models\Tautan;
@@ -14,19 +15,21 @@ class AdminController extends Controller
         $title = 'Dashboard Admin';
     
         $totalProjects = Project::count(); // Menghitung jumlah project
-        $totalDocuments = Dokumen::count(); // Menghitung jumlah dokumen
+        $totalDocuments = Dokument::count(); // Menghitung jumlah dokumen
         $totalLinks = Tautan::count(); // Menghitung jumlah link
     
         // Kirim data ke view
         return view('admin.dashboardadmin', compact('title', 'totalProjects', 'totalDocuments', 'totalLinks'));
     }
-    
+
     public function documents()
-    {
-        $title = 'Documents Admin';
-        $dokumen = post::all(); // Mengambil data dummy dari model post
-        return view('admin.dokumenadmin', compact('title', 'dokumen'));  // Mengirim data ke view
-    }
+{
+    $title = 'Dokumen Admin';
+    $documents = Dokument::all(); // Ambil semua data dokumen
+    
+    return view('admin.dokumenadmin', compact('title', 'documents'));
+
+}
 
     
 }

@@ -27,6 +27,11 @@ class AuthController extends Controller
             } elseif ($user->role == 'admin') {
                 return redirect()->route('admin.dashboard');
             }
+            if ($user->role == 'superadmin') {
+                return redirect()->route('superadmin.dokumensuperadmin');
+            } elseif ($user->role == 'admin') {
+                return redirect()->route('dokumen');
+            }
         }
 
         // Jika login gagal
