@@ -65,7 +65,7 @@
             </table>
             
             <!-- Navigasi Pagination -->
-            <div class="mt-4">
+            <div class="mt-2">
                 {{ $trackingRecords->links() }}
             </div>
         </div>

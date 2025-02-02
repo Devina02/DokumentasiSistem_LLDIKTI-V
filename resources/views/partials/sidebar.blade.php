@@ -12,10 +12,10 @@
         <!-- Dashboard Link -->
         <li>
             <a href="{{ route(Auth::user()->role . '.dashboard') }}"
-               class="flex items-center px-4 py-2 rounded-lg transition duration-200
-               {{ request()->routeIs(Auth::user()->role . '.dashboard') ? 'bg-pink-100 text-purple-500 font-semibold shadow-md' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-500' }}">
+               class="flex items-center px-4 py-2 rounded-full transition duration-200
+               {{ request()->routeIs(Auth::user()->role . '.dashboard') ? 'bg-white-700 text-blue-600 font-semibold shadow-md' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-500' }}">
                 <i class="fas fa-tachometer-alt sidebar-icon mr-3
-                   {{ request()->routeIs(Auth::user()->role . '.dashboard') ? 'text-purple-500' : '' }}"></i>
+                   {{ request()->routeIs(Auth::user()->role . '.dashboard') ? 'text-blue-600' : '' }}"></i>
                 <span class="sidebar-text">Dashboard</span>
             </a>
         </li>
@@ -23,10 +23,10 @@
         <!-- Documents Link -->
         <li>
             <a href="{{ route(Auth::user()->role . '.dokumen') }}"
-               class="flex items-center px-4 py-2 rounded-lg transition duration-200
-               {{ request()->routeIs(Auth::user()->role . '.dokumen') ? 'bg-pink-100 text-purple-500 font-semibold shadow-md' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-500' }}">
+               class="flex items-center px-4 py-2 rounded-full transition duration-200
+               {{ request()->routeIs(Auth::user()->role . '.dokumen') ? 'bg-white-700 text-blue-600 font-semibold shadow-md' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-500' }}">
                 <i class="fas fa-file-alt sidebar-icon mr-3
-                   {{ request()->routeIs(Auth::user()->role . '.dokumen') ? 'text-purple-500' : '' }}"></i>
+                   {{ request()->routeIs(Auth::user()->role . '.dokumen') ? 'text-blue-600' : '' }}"></i>
                 <span class="sidebar-text">Dokumentasi</span>
             </a>
         </li>

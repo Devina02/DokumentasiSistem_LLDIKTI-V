@@ -7,10 +7,11 @@ use App\Models\Project;
 
 class DocumentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil semua project
-        $projects = Project::paginate(6);
+        $sortField = $request->get('sort_field', 'created_at');
+    
+        $projects = Project::orderBy($sortField, )->paginate(6);
 
         // Menambahkan warna berdasarkan urutan
         $projects->each(function($project, $index) {
@@ -24,7 +25,7 @@ class DocumentController extends Controller
         });
 
         // Kirim data projects ke view
-        return view('superadmin.dokumensuperadmin', compact('projects'));
+        return view('superadmin.dokumensuperadmin', compact('projects', 'sortField'));
     }
 
     // Fungsi untuk menghapus project

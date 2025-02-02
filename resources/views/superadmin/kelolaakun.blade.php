@@ -3,7 +3,6 @@
 @section('container')
     <div class="flex-1 p-8">
         <h1 class="text-2xl font-bold mb-4">Kelola Akun</h1>
-
         <!-- Form Tambah Akun -->
         <div class="flex items-center space-x-4 mb-14">
             <form action="{{ route('superadmin.kelolaakun.store') }}" method="POST" class="flex items-center space-x-4 w-full">

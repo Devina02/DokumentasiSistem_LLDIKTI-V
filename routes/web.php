@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Dokument;
 use Illuminate\Support\Facades\Route;
-use App\Models\post;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\AdminController;
@@ -73,6 +71,7 @@ Route::prefix('superadmin')->name('superadmin.')->middleware(['auth', 'role:supe
 // Upload project 
 Route::post('/upload-doc', [ProjectController::class, 'store']);
 Route::get('/superadmin/uploaddoc', [ProjectController::class, 'create'])->name('superadmin.uploaddoc');
+Route::get('/project/{id}', [ProjectController::class, 'show'])->name('project.detail');
 
 
 
@@ -119,3 +118,5 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::get('/superadmin/tracking', [TrackingController::class, 'index'])
          ->name('superadmin.tracking');
 });
+
+Route::get('/projects', [DocumentController::class, 'index'])->name('project.index');

@@ -3,6 +3,7 @@
 @section('container')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
 <div class="max-w-8xl mx-auto mt-10 p-10 bg-white rounded-lg shadow-md">
 @include('alert.flashhmessage')
     <h1 class="text-2xl font-semibold mb-4">Edit : <span class="text-purple-600">Project</span></h1>
@@ -103,8 +104,9 @@
 
     </form>
 </div>
-<!-- Modal -->
+
 @include('alert.modalhapusitem')
+
 <script src="{{ asset("js/timeoutflash.js") }}"></script>
 <script src="{{ asset("js/modalhapusitem.js") }}"></script>
 <script src="{{ asset("js/hapusitem.js") }}"></script>

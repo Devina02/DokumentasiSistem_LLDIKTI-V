@@ -6,8 +6,9 @@
     <!-- Main Content -->
     <div class="w-full max-w-8xl">
         
-       
         @include('button.previous')
+       
+        @include('alert.flashhmessage')
 
         <div class="text-center mb-6 mt-6">
             <h1 class="text-5xl font-bold text-black-500 mb-4">
@@ -135,5 +136,5 @@
 
     </div>
 </div>
-
+<script src="{{ asset("js/timeoutflash.js") }}"></script>
 @endsection

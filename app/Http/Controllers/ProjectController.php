@@ -67,11 +67,17 @@ class ProjectController extends Controller
         }
         
 
-        // Menampilkan pemberitahuan sukses
-        Session::flash('success', 'Project berhasil disimpan!');
+        return redirect()->route('project.detail', ['id' => $project->id_project])
+        ->with('success', 'Project berhasil disimpan!');
 
-        return redirect()->back()->with('success', 'Project berhasil disimpan!');
     }
+    public function show($id)
+    {
+        $project = Project::findOrFail($id);
+        return view('superadmin.detail_project', compact('project'));
+    }
+    
+
 
     public function edit($id)
     {
