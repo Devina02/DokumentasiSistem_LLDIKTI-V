@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Tautan;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Tracking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -27,10 +28,19 @@ class SuperAdminController extends Controller
         $totalProjects = Project::count(); 
         $totalDocuments = Dokument::count();
         $totalLinks = tautan::count(); 
-        // Kirim data ke view
-        return view('superadmin.dashboardsuperadmin', compact('title', 'activeAdmins', 'totalProjects', 'totalDocuments', 'totalLinks'));
-    }
+         // Ambil data tracking aktivitas admin
+         $trackingRecords = Tracking::with('user')->orderBy('created_at', 'desc')->paginate(3)->onEachSide(1);
 
+         // Kirim semua data ke view dashboard superadmin
+         return view('superadmin.dashboardsuperadmin', compact(
+             'title',
+             'activeAdmins',
+             'totalProjects',
+             'totalDocuments',
+             'totalLinks',
+             'trackingRecords'
+         ));
+     }
 
     public function showDashboard()
     {
@@ -134,7 +144,6 @@ class SuperAdminController extends Controller
         return redirect()->route('superadmin.kelolaakun.index')->with('warning', 'Tidak ada perubahan yang dilakukan.');
     }
 
-    // Login - Menambahkan pembaruan last_active saat login
     public function login(Request $request)
     {
         // Proses login

@@ -11,23 +11,30 @@
     <ul class="space-y-10">
         <!-- Dashboard Link -->
         <li>
-            <a class="flex items-center {{ request()->is('superadmin/dashboardsuperadmin') || request()->is('admin/dashboardadmin') ? 'font-bold text-blue-500' : 'text-gray-600 hover:text-blue-500' }}" href="{{ route(Auth::user()->role . '.dashboard') }}">
-                <i class="fas fa-tachometer-alt sidebar-icon mr-3 {{ request()->is('superadmin/dashboardsuperadmin') || request()->is('admin/dashboardadmin') ? 'text-blue-500' : '' }}"></i>
+            <a href="{{ route(Auth::user()->role . '.dashboard') }}"
+               class="flex items-center px-4 py-2 rounded-lg transition duration-200
+               {{ request()->routeIs(Auth::user()->role . '.dashboard') ? 'bg-pink-100 text-purple-500 font-semibold shadow-md' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-500' }}">
+                <i class="fas fa-tachometer-alt sidebar-icon mr-3
+                   {{ request()->routeIs(Auth::user()->role . '.dashboard') ? 'text-purple-500' : '' }}"></i>
                 <span class="sidebar-text">Dashboard</span>
             </a>
         </li>
-        
+
         <!-- Documents Link -->
         <li>
-            <a class="flex items-center {{ request()->is('superadmin/dokumensuperadmin') || request()->is('admin/dokumenadmin') ? 'font-bold text-blue-500' : 'text-gray-600 hover:text-blue-500' }}" href="{{ route(Auth::user()->role . '.dokumen') }}">
-                <i class="fas fa-file-alt sidebar-icon mr-3 {{ request()->is('superadmin/dokumensuperadmin') || request()->is('admin/dokumenadmin') ? 'text-blue-500' : '' }}"></i>
-                <span class="sidebar-text">Documents</span>
+            <a href="{{ route(Auth::user()->role . '.dokumen') }}"
+               class="flex items-center px-4 py-2 rounded-lg transition duration-200
+               {{ request()->routeIs(Auth::user()->role . '.dokumen') ? 'bg-pink-100 text-purple-500 font-semibold shadow-md' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-500' }}">
+                <i class="fas fa-file-alt sidebar-icon mr-3
+                   {{ request()->routeIs(Auth::user()->role . '.dokumen') ? 'text-purple-500' : '' }}"></i>
+                <span class="sidebar-text">Dokumentasi</span>
             </a>
         </li>
 
         <!-- Logout Link -->
         <li>
-            <button class="flex items-center text-gray-600 hover:text-blue-500" id="logoutButton">
+            <button id="logoutButton"
+                    class="flex items-center px-4 py-2 rounded-lg transition duration-200 text-gray-600 hover:bg-blue-50 hover:text-blue-500">
                 <i class="fas fa-sign-out-alt sidebar-icon mr-3"></i>
                 <span class="sidebar-text">Logout</span>
             </button>

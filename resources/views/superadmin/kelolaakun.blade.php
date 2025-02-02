@@ -36,16 +36,10 @@
             @foreach ($users as $user)
                 <div class="bg-white p-4 rounded-lg shadow flex justify-between items-center">
                     <div class="flex items-center">
-                        <!-- Modal Edit dan Hapus -->
                         @include('alert.modaleditakun', ['user' => $user])
                         @include('alert.alerthapusakun', ['user' => $user])
-
-                        <!-- Tombol Edit dengan Icon -->
                         @include('button.editakun', ['user' => $user])
-                        <!-- Tombol Hapus -->
                         @include('button.hapusakun', ['user' => $user])
-
-                        <!-- Profil Akun -->
                         <div class="w-12 h-12 mr-4 ml-4 rounded-lg overflow-hidden">
                             <img src="{{ asset('image/verified.png') }}" alt="Profile" class="w-full h-full object-cover" />
                         </div>

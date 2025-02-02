@@ -90,7 +90,7 @@
                             <p class="w-1/3">
                                 <span class="font-bold">Link:</span>
                                 <span class="font-medium">
-                                    <a href="{{ $tautan->link }}" class="text-blue-500" target="_blank">Lihat Link</a>
+                                    <a href="{{ route('link.open', $tautan->id_link) }}" class="text-blue-500" target="_blank">Lihat Link</a>
                                 </span>
                             </p>
                         </div>
@@ -120,15 +120,13 @@
                     <p class="w-1/6">
                         <span class="font-bold">Dokumen:</span>
                         <span class="font-medium">
-                            <a href="{{ asset('storage/' . $dokument->dokumen) }}" class="text-blue-500" target="_blank">Lihat Dokumen</a>
+                            <a href="{{ route('document.view', $dokument->id_doc) }}" class="text-blue-500" target="_blank">Lihat Dokumen</a>
                         </span>
                     </p>
                     <div class="w-2/8 flex items-center">
-                        <a href="{{ asset('storage/' . $dokument->dokumen) }}" 
-                           class="text-lg" 
-                           download="{{ $dokument->nama_dokumen }}.pdf">
+                        <a href="{{ route('document.download', $dokument->id_doc) }}" class="text-lg" download="{{ $dokument->nama_dokumen }}.pdf">
                             <i class="fas fa-download bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700"></i>
-                        </a>
+                        </a>                        
                     </div>
                 </div>
                 @endforeach

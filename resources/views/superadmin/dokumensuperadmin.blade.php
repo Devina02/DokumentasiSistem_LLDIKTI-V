@@ -2,8 +2,8 @@
 
 @section('container')
 
-@include('alert.flashhmessage')
 
+@include('alert.flashhmessage')
 <div>
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-semibold">Daftar Dokumentasi</h1>
@@ -39,12 +39,10 @@
     
     </div>
     @include('alert.alerthapusproject')
-    
     <div class=" mt-8 mb-6">
         {{ $projects->links() }}
     </div>
 </div>
-
 
 <script src="{{ asset("js/hapusproject.js") }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

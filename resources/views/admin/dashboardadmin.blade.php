@@ -10,8 +10,9 @@
                 <h1 class="text-4xl font-semibold">
                     Halo,
                     <span class="text-blue-500">
-                        Admin!
+                        {{ Auth::user()->username ?? 'Admin!' }}
                     </span>
+                    
                 </h1>
                 <p class="text-gray-500 mt-5">
                     Welcome back! Semua informasi proyek, dokumen, dan link tersedia di sini.

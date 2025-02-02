@@ -70,8 +70,7 @@ class ProjectController extends Controller
         // Menampilkan pemberitahuan sukses
         Session::flash('success', 'Project berhasil disimpan!');
 
-        // Redirect kembali ke halaman upload
-        return redirect()->route('uploaddoc');
+        return redirect()->back()->with('success', 'Project berhasil disimpan!');
     }
 
     public function edit($id)

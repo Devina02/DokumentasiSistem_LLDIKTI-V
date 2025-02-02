@@ -43,4 +43,16 @@ class AuthController extends Controller
         return view('home'); // Sesuaikan dengan nama view yang benar
     }
 
+    public function logout(Request $request)
+    {
+        // Ambil user yang sedang login (opsional, jika diperlukan)
+        $user = Auth::user();
+
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('success', 'Logout berhasil.');
+    }
+
 }

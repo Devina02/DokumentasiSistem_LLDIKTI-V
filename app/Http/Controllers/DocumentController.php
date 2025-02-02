@@ -52,7 +52,7 @@ class DocumentController extends Controller
    $query = $request->input('search');
     
    if ($query) {
-       $projects = Project::where('judul', 'like', '%' . $query . '%')->paginate(10);
+       $projects = Project::where('judul', 'like', '%' . $query . '%')->paginate(6)->onEachSide(1);
        
        // Menambahkan warna berdasarkan urutan
        $projects->each(function($project, $index) {

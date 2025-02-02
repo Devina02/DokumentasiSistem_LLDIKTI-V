@@ -38,31 +38,40 @@
         </div>
     </div>
 
-    <div>
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-bold">Aktivitas</h3>
-        </div>
-        <table class="w-full bg-white rounded-lg">
-            <thead>
-                <tr class="text-left text-gray-500">
-                    <th class="p-4">No.</th>
-                    <th class="p-4">Akun</th>
-                    <th class="p-4">Aksi</th>
-                    <th class="p-4">Doc/Link</th>
-                    <th class="p-4">Waktu</th>
-                </tr>
-            </thead>
-            {{-- <tbody>
-                @foreach ($tracking as $item)
-                    <tr class="border-t">
-                        <td class="p-4">{{ $item['no'] }}</td>
-                        <td class="p-4">{{ $item['akun'] }}</td>
-                        <td class="p-4">{{ $item['aksi'] }}</td>
-                        <td class="p-4 text-blue-500">{{ $item['dokumen'] }}</td>
-                        <td class="p-4">{{ $item['waktu'] }}</td>
+    <h2 class="text-lg font-bold mb-4">Aktivitas Admin</h2>
+    @if(isset($trackingRecords) && $trackingRecords->isNotEmpty())
+        <div class="bg-white p-2 rounded-lg ">
+            <table class="w-full bg-white rounded-lg">
+                <thead>
+                    <tr class="text-left text-gray-500">
+                        <th class="p-4">No.</th>
+                        <th class="p-4">Akun</th>
+                        <th class="p-4">Aksi</th>
+                        <th class="p-4">Detail</th>
+                        <th class="p-4">Waktu</th>
                     </tr>
-                @endforeach
-            </tbody> --}}
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    @foreach($trackingRecords as $index => $record)
+                        <tr class="border-t">
+                            <td class="p-4">{{ $trackingRecords->firstItem() + $loop->index }}</td>
+                            <td class="p-4">{{ $record->user->username ?? '-' }}</td>
+                            <td class="p-4">{{ $record->aksi }}</td>
+                            <td class="p-4">{{ $record->detail ?? '-' }}</td>
+                            <td class="p-4">{{ \Carbon\Carbon::parse($record->created_at)->format('d M Y H:i:s') }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            
+            <!-- Navigasi Pagination -->
+            <div class="mt-4">
+                {{ $trackingRecords->links() }}
+            </div>
+        </div>
+    @else
+        <div class="bg-white p-6 rounded-lg mb-6">
+            <p class="text-gray-500">Tidak ada data aktivitas.</p>
+        </div>
+    @endif
 @endsection
