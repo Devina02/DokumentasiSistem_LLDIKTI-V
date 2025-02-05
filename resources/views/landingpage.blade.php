@@ -98,7 +98,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-r from-purple-300 to-blue-300 text-black py-10 mx-4 mb-10 rounded-3xl">
+    <footer class="bg-gradient-to-r from-purple-300 to-blue-300 text-black py-10 mx-4 mb-6 rounded-3xl">
       <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
         <!-- Logo dan Judul -->
         <div class="flex flex-col items-start mb-6 md:mb-0">

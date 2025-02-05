@@ -52,7 +52,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('success', 'Logout berhasil.');
+        return redirect()->route('landingpage')->with('success', 'Logout berhasil.');
     }
 
 }

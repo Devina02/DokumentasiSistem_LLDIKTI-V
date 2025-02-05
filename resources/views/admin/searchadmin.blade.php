@@ -12,7 +12,7 @@
         </div>
     </div>
     
-      <div class="flex flex-col items-start ml-4">
+    <div class="flex flex-col items-start ml-4">
         <h1 class="text-2xl font-semibold mt-1 mb-9">Hasil Pencarian</h1>
 
         @if(isset($message))
@@ -27,7 +27,6 @@
            class="bg-white p-6 rounded-3xl shadow-md transform transition-transform duration-300 hover:scale-105"
            style="background-color: {{ $Project->color }}; display: block;" id="project-{{ $Project->id_project }}">
             <div class="flex justify-between items-center mb-6">
-                <!-- Updated -->
                 <div class="flex flex-col">
                     <span class="text-gray-600 text-sm">Created:</span>
                     <span class="text-gray-600 text-sm">

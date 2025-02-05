@@ -4,7 +4,14 @@
 
     <div>
         <div class="flex justify-between items-center mt-8 mb-7">
-            <h1 class="text-2xl font-semibold">Documents</h1>
+            <h1 class="text-xl font-semibold">Daftar Project</h1>
+            <form method="GET" action="{{ route('project.index') }}" class="flex items-center space-x-4">
+                <label for="sort_field" class="text-gray-700 mr-2">Sort by:</label>
+                <select name="sort_field" class="block appearance-none w-auto bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" onchange="this.form.submit()">
+                    <option value="created_at" {{ request('sort_field') == 'created_at' ? 'selected' : '' }}>Tanggal Dibuat</option>
+                    <option value="judul" {{ request('sort_field') == 'judul' ? 'selected' : '' }}>Judul</option>
+                </select>
+            </form>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-list">
             <!-- Document Card -->

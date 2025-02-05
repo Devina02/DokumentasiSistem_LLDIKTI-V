@@ -27,7 +27,7 @@
                {{ request()->routeIs(Auth::user()->role . '.dokumen') ? 'bg-white-700 text-blue-600 font-semibold shadow-md' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-500' }}">
                 <i class="fas fa-file-alt sidebar-icon mr-3
                    {{ request()->routeIs(Auth::user()->role . '.dokumen') ? 'text-blue-600' : '' }}"></i>
-                <span class="sidebar-text">Dokumentasi</span>
+                <span class="sidebar-text">Project</span>
             </a>
         </li>
 

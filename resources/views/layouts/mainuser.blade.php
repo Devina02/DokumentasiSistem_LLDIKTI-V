@@ -20,7 +20,7 @@
         <!-- Main Content -->
         <div class="flex-1 p-8 ml-64">
             <div class="flex justify-between items-center mb-8">
-                @include('partials.search') 
+                @include('partials.searchadm') 
             </div>
 
             <!-- Content Container -->

@@ -41,28 +41,30 @@
     <h2 class="text-lg font-bold mb-4">Aktivitas Admin</h2>
     @if(isset($trackingRecords) && $trackingRecords->isNotEmpty())
         <div class="bg-white p-2 rounded-lg ">
-            <table class="w-full bg-white rounded-lg">
+            <table class="w-full bg-white rounded-lg table-fixed">
                 <thead>
                     <tr class="text-left text-gray-500">
-                        <th class="p-4">No.</th>
-                        <th class="p-4">Akun</th>
-                        <th class="p-4">Aksi</th>
-                        <th class="p-4">Detail</th>
-                        <th class="p-4">Waktu</th>
+                        <th class="p-4 w-12">No.</th> 
+                        <th class="p-4 w-32">Akun</th> 
+                        <th class="p-4 w-40">Aksi</th> 
+                        <th class="p-4">Detail</th> 
+                        <th class="p-4 w-56">Waktu</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($trackingRecords as $index => $record)
                         <tr class="border-t">
-                            <td class="p-4">{{ $trackingRecords->firstItem() + $loop->index }}</td>
-                            <td class="p-4">{{ $record->user->username ?? '-' }}</td>
-                            <td class="p-4">{{ $record->aksi }}</td>
+                            <td class="p-4 w-12">{{ $trackingRecords->firstItem() + $loop->index }}</td>
+                            <td class="p-4 w-32 truncate">{{ $record->user->username ?? '-' }}</td>
+                            <td class="p-4 w-40 truncate">{{ $record->aksi }}</td>
                             <td class="p-4">{{ $record->detail ?? '-' }}</td>
-                            <td class="p-4">{{ \Carbon\Carbon::parse($record->created_at)->format('d M Y H:i:s') }}</td>
+                            <td class="p-4 w-56">{{ \Carbon\Carbon::parse($record->created_at)->format('d M Y H:i:s') }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            
+            
             
             <!-- Navigasi Pagination -->
             <div class="mt-2">

@@ -9,6 +9,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentAdminController;
 use App\Http\Controllers\DetailProjectController;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\PageController;
 
 
 /*
@@ -48,14 +49,9 @@ Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/', function () {
-    return view('landingpage');
-})->name('landingpage');
-
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
-
+//landingpage dan login
+Route::get('/', [PageController::class, 'landingPage'])->name('landingpage');
+Route::get('/home', [PageController::class, 'home'])->name('home');
 
 
 // Superadmin routes
@@ -100,7 +96,7 @@ Route::get('/project/{id}', [DetailProjectController::class, 'show'])->name('pro
 // search project
 Route::get('/search', [DocumentController::class, 'search']);
 Route::get('/dokumensuperadmin', [DocumentController::class, 'index'])->name('superadmin.dokumensuperadmin');
-
+Route::get('/admin/search', [DocumentAdminController::class, 'search'])->name('admin.search');
 
 
 // Tabel tracking

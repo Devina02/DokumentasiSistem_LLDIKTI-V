@@ -41,7 +41,7 @@ class TrackingController extends Controller
      {
          $dokument = Dokument::findOrFail($id_doc);
          // Catat aktivitas: lihat dokumen
-         \App\Http\Controllers\TrackingController::storeActivity(auth()->user()->id_user, 'lihat_dokumen', $dokument->nama_dokumen);
+         \App\Http\Controllers\TrackingController::storeActivity(auth()->user()->id_user, 'lihat_file', $dokument->nama_dokumen);
  
          // Redirect ke file dokumen (misalnya, dalam storage)
          return redirect(asset('storage/' . $dokument->dokumen));
@@ -52,7 +52,7 @@ class TrackingController extends Controller
      {
          $dokument = Dokument::findOrFail($id_doc);
          // Catat aktivitas: download dokumen
-         \App\Http\Controllers\TrackingController::storeActivity(auth()->user()->id_user, 'download_dokumen', $dokument->nama_dokumen);
+         \App\Http\Controllers\TrackingController::storeActivity(auth()->user()->id_user, 'download_file', $dokument->nama_dokumen);
  
          // Mengembalikan file download
          return response()->download(storage_path('app/public/' . $dokument->dokumen), $dokument->nama_dokumen . '.pdf');
