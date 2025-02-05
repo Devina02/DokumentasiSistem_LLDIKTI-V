@@ -22,7 +22,7 @@
         <h1 class="text-5xl font-bold mt-6">
           Manajemen <span class="relative inline-block">
             <span class="relative z-10">Dokumentasi</span>
-            <span class="relative z-10">LLDIKTI V</span>
+            <span class="relative z-10">Sistem</span>
             <span class="absolute inset-0 bg-rose-100 rounded-full transform -rotate-6 -skew-x-6"></span>
           </span>
         </h1>

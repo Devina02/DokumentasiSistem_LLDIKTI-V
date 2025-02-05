@@ -9,6 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ asset("js/timeoutflash.js") }}"></script>
     <style type="text/tailwindcss">
       button {
         background: linear-gradient(135deg, #4c6ef5, #7b2ff7);
@@ -22,15 +23,11 @@
     </style>
   </head>
   <body>
-    <!-- Navigasi -->
-    <nav>
-      <div class="px-6 container mx-auto flex items-center justify-between py-5">
-      </div>
-    </nav>
 
     <!-- Hero Section -->
-    <section class="px-6 container mx-auto md:flex md:justify-between items-center my-12 space-x-6">
+    <section class="px-6 py-5 container mx-auto md:flex md:justify-between items-center my-12 space-x-6">
       <div class="md:w-3/6 text-center md:text-left">
+        @include('alert.flashhmessage')
         <h4 class="text-xl font-bold">Dokumentasi Sistem</h4>
         <h3 class="text-5xl font-bold mb-5">Manajemen Dokumentasi Sistem</h3>
         <p class="text-gray-500 mb-8"> Lembaga Layanan Pendidikan Tinggi Wilayah V</p>
@@ -137,8 +134,5 @@
         </div>
       </div>
     </footer>
-    @if (session('message'))
-        <p>{{ session('message') }}</p>
-    @endif
   </body>
 </html>
