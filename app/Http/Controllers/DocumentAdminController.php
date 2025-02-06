@@ -7,20 +7,30 @@ use App\Models\Project;
 
 class DocumentAdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil semua project
-        $projects = Project::paginate(6);
+        $sortField = $request->get('sort_field', 'created_at');
+        $sortDirection = $request->get('sort_direction', 'desc'); // Default descending
+    
+        // Pastikan jika sort_field adalah 'judul', direction selalu 'asc'
+        if ($sortField === 'judul') {
+            $sortDirection = 'asc';
+        }
+    
+        $projects = Project::orderBy($sortField, $sortDirection)->paginate(6);
     
         // Menambahkan warna berdasarkan urutan
-        $projects->each(function($project, $index) {
-            $colors = ["#e0f7fa", "#fef3c7", "#d1fae5", "#fde2e2", "#e9d5ff", "#d1d5db"];
+        $projects->each(function ($project, $index) {
+            $colors = [
+                "#e0f7fa", "#fef3c7", "#d1fae5", "#fde2e2", "#e9d5ff", "#d1d5db"
+            ];
             $project->color = $colors[$index % count($colors)];
         });
     
-        // Kirim ke view dokumenadmin
-        return view('admin.dokumenadmin', compact('projects'));
+        return view('admin.dokumenadmin', compact('projects', 'sortField', 'sortDirection'));
     }
+    
+    
     public function search(Request $request)
     {
        // Ambil query pencarian

@@ -55,16 +55,15 @@ class SuperAdminController extends Controller
     public function kelolaakun(Request $request)
     {
         $title = 'Kelola Akun Super Admin';
-
-        
         $search = $request->input('search');
 
+        // Pastikan akun admin diurutkan berdasarkan created_at descending (terbaru dibuat di atas)
         $users = User::where('role', 'admin')
             ->when($search, function ($query) use ($search) {
                 return $query->where('username', 'like', '%' . $search . '%');
             })
+            ->orderBy('created_at', 'desc')
             ->paginate(4);
-            
 
         return view('superadmin.kelolaakun', compact('title', 'users'));
     }
@@ -82,8 +81,11 @@ class SuperAdminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required|unique:users,username|min:2',
+            'username' => 'required|unique:users,username|min:2|regex:/^\S*$/u',
             'password' => 'required|min:2',
+        ], [
+            'username.unique' => 'Username sudah terdaftar.',
+            'username.regex' => 'Username tidak boleh mengandung spasi.',
         ]);
 
         User::create([

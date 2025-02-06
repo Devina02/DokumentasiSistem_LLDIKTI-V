@@ -1,8 +1,11 @@
 @extends('layouts.empty')
 
 @section('container')
-    <div class="flex-1 p-8">
+    <div class="flex-1 p-8" x-data="{ showErrors: {{ $errors->any() ? 'true' : 'false' }} }">
         <h1 class="text-2xl font-bold mb-4">Kelola Akun</h1>
+        <!-- Modal Error -->
+        @include('alert.modalerror')
+
         <!-- Form Tambah Akun -->
         <div class="flex items-center space-x-4 mb-14">
             <form action="{{ route('superadmin.kelolaakun.store') }}" method="POST" class="flex items-center space-x-4 w-full">
@@ -15,7 +18,7 @@
             </form>
         </div>
 
-        <!-- Flash Messages -->
+        <!-- Flash Messages (misal: success message) -->
         @include('alert.flashhmessage')
 
         <div class="flex items-center justify-between mb-6">
@@ -26,10 +29,8 @@
                     <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
                     <button type="submit" class="text-white px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:shadow-lg transition">Search</button>
                 </form>                
-                
             </div>
         </div>
-
 
         <div class="space-y-4">
             @foreach ($users as $user)
@@ -62,6 +63,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="{{ asset('js/modaledithapusakun.js') }}"></script>
     <script src="{{ asset("js/timeoutflash.js") }}"></script>
 @endsection

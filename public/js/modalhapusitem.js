@@ -6,9 +6,9 @@ function showDeleteModal(itemType, itemId, itemName) {
     
     // Set confirmation message based on item type and name
     if (itemType === 'link') {
-        confirmDeleteText.textContent = `Apakah anda yakin ingin menghapus link "${itemName}"?`;
+        confirmDeleteText.innerHTML = `Apakah anda yakin ingin <strong>menghapus</strong> link "<strong>${itemName}</strong>"?`;
     } else if (itemType === 'dokumen') {
-        confirmDeleteText.textContent = `Apakah anda yakin ingin menghapus dokumen "${itemName}"?`;
+        confirmDeleteText.innerHTML = `Apakah anda yakin ingin <strong>menghapus</strong> dokumen "<strong>${itemName}</strong>"?`;
     }
 
     // Show the modal
@@ -25,7 +25,7 @@ function showDeleteModal(itemType, itemId, itemName) {
     };
 }
 
-// tutup modal
+// Tutup modal
 function closeModal() {
     const modal = document.getElementById('confirmDeleteModal');
     modal.classList.add('hidden');

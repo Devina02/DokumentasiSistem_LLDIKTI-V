@@ -9,24 +9,27 @@ class DocumentController extends Controller
 {
     public function index(Request $request)
     {
-        $sortField = $request->get('sort_field', 'created_at');
+       $sortField = $request->get('sort_field', 'created_at');
+        $sortDirection = $request->get('sort_direction', 'desc'); // Default descending
     
-        $projects = Project::orderBy($sortField, )->paginate(6);
-
+        // Pastikan jika sort_field adalah 'judul', direction selalu 'asc'
+        if ($sortField === 'judul') {
+            $sortDirection = 'asc';
+        }
+    
+        $projects = Project::orderBy($sortField, $sortDirection)->paginate(6);
+    
         // Menambahkan warna berdasarkan urutan
-        $projects->each(function($project, $index) {
-            
+        $projects->each(function ($project, $index) {
             $colors = [
                 "#e0f7fa", "#fef3c7", "#d1fae5", "#fde2e2", "#e9d5ff", "#d1d5db"
             ];
-
-            // Menentukan warna
             $project->color = $colors[$index % count($colors)];
         });
-
-        // Kirim data projects ke view
-        return view('superadmin.dokumensuperadmin', compact('projects', 'sortField'));
+    
+        return view('superadmin.dokumensuperadmin', compact('projects', 'sortField', 'sortDirection'));
     }
+    
 
     // Fungsi untuk menghapus project
     public function delete($id_project)
