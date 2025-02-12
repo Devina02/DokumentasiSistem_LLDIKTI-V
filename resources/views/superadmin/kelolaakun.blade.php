@@ -18,7 +18,7 @@
             </form>
         </div>
 
-        <!-- Flash Messages (misal: success message) -->
+        <!-- Flash Messages) -->
         @include('alert.flashhmessage')
 
         <div class="flex items-center justify-between mb-6">
